@@ -1,7 +1,8 @@
+
 import java.util.Scanner;
-//esta es la parte principal//
+
 public class Vista {
-//diversas opciones del radio a continuación//
+
     public int menu_p(Radio radio) {
         Scanner scan = new Scanner(System.in);
         int i = 0;
