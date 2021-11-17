@@ -1,6 +1,7 @@
 //Controlador (Controller): Este componente es el que responde a la interacción (eventos) que hace el usuario en la interfaz//
 //y realiza las peticiones al modelo para pasar estos a la vista.//
 
+
 public class Controlador {
 
     public static void main(String[] args) {
@@ -25,6 +26,7 @@ public class Controlador {
                     System.out.println(radio);
                     
                 } else if (index_accion1 == 3 && radio.isTurn()) {
+                    index_accion2 = 0;
                     while (index_accion2 != 5) {
                         index_accion2 = v.menu_r();
                         
@@ -64,7 +66,27 @@ public class Controlador {
                             System.out.println(radio);
                         }
                     }
-                }
+                    
+                } else if(index_accion1 == 5 && radio.isTurn()){
+                    index_accion2 = 0;
+                    while(index_accion2 != 5){
+                        index_accion2 = v.menu_t(radio);
+                        
+                        if(index_accion2 == 1){
+                            radio.conec_desconec();
+                            System.out.println(radio);
+                        } else if(index_accion2 == 2){
+                            radio.mostrarC(v);
+                            System.out.println(radio);
+                        } else if(index_accion2 == 3){
+                            radio.llamarC(v);
+                            System.out.println(radio);
+                        } else if(index_accion2 == 4){
+                            radio.finC();
+                            System.out.println(radio);
+                        }
+                    }
+                } 
             }
         }
     }

@@ -79,30 +79,30 @@ public class Vista {
         Scanner scan = new Scanner(System.in);
         try {
             if (radio instanceof RadioS) {
-                System.out.println("\n¿Que desea hacer?\n1.Conectar/Desconectar telefono\n2.Mostrar contactos\n3.Llamar a contacto\n4.Finalizar llamada\n5.Cambiar a bocinas o auriculares");
+                System.out.println("\n¿Que desea hacer?\n1.Conectar/Desconectar telefono\n2.Mostrar contactos\n3.Llamar a contacto\n4.Finalizar llamada\n5.Cambiar a bocinas o auriculares\n6.Salir");
                 opcion = scan.nextInt();
-                while (opcion <= 0 || opcion >= 6) {
+                while (opcion <= 0 || opcion >= 7) {
                     System.out.println("\n*********Ingrese una opcion valida*********");
                     opcion = scan.nextInt();
                 }
             } else if (radio instanceof RadioA) {
-                System.out.println("\n¿Que desea hacer?\n1.Conectar/Desconectar telefono\n2.Mostrar contactos\n3.Llamar a contacto\n4.Finalizar llamada\n5.Llamar al ultimo contacto con el que se hablo");
+                System.out.println("\n¿Que desea hacer?\n1.Conectar/Desconectar telefono\n2.Mostrar contactos\n3.Llamar a contacto\n4.Finalizar llamada\n5.Llamar al ultimo contacto con el que se hablo\n6.Salir");
                 opcion = scan.nextInt();
-                while (opcion <= 0 || opcion >= 6) {
+                while (opcion <= 0 || opcion >= 7) {
                     System.out.println("\n*********Ingrese una opcion valida*********");
                     opcion = scan.nextInt();
                 }
             } else if (radio instanceof RadioC) {
-                System.out.println("\n¿Que desea hacer?\n1.Conectar/Desconectar telefono\n2.Mostrar contactos\n3.Llamar a contacto\n4.Finalizar llamada\n5.Cambiar a llamada en espera");
+                System.out.println("\n¿Que desea hacer?\n1.Conectar/Desconectar telefono\n2.Mostrar contactos\n3.Llamar a contacto\n4.Finalizar llamada\n5.Cambiar a llamada en espera\n6.Salir");
                 opcion = scan.nextInt();
-                while (opcion <= 0 || opcion >= 6) {
+                while (opcion <= 0 || opcion >= 7) {
                     System.out.println("\n*********Ingrese una opcion valida*********");
                     opcion = scan.nextInt();
                 }
             } else{
-                System.out.println("\n¿Que desea hacer?\n1.Conectar/Desconectar telefono\n2.Mostrar contactos\n3.Llamar a contacto\n4.Finalizar llamada");
+                System.out.println("\n¿Que desea hacer?\n1.Conectar/Desconectar telefono\n2.Mostrar contactos\n3.Llamar a contacto\n4.Finalizar llamada\n5.Salir");
                 opcion = scan.nextInt();
-                while (opcion <= 0 || opcion >= 5) {
+                while (opcion <= 0 || opcion >= 6) {
                     System.out.println("\n*********Ingrese una opcion valida*********");
                     opcion = scan.nextInt();
                 }
