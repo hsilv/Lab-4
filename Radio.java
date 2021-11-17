@@ -12,6 +12,7 @@ public class Radio implements ModoRadio, ModoReproduccion, ModoTelefono {
     protected ArrayList<String> emisoras;
     protected boolean turn_tel;
     protected ArrayList<String> contactos;
+    protected boolean llamada;
     protected ArrayList<String> playlist;
     protected String cancion;
     protected int index_play;
@@ -22,6 +23,7 @@ public class Radio implements ModoRadio, ModoReproduccion, ModoTelefono {
         this.frecuencia = 105.5;
         this.turn = false;
         this.turn_tel = false;
+        this.llamada = false;
         this.incremento_vol = 1;
         this.emisoras = new ArrayList(1);
         this.contactos = new ArrayList(1);
@@ -31,14 +33,14 @@ public class Radio implements ModoRadio, ModoReproduccion, ModoTelefono {
         try {
             FileReader lector = new FileReader("Lista_contactos.csv");
             BufferedReader BR = new BufferedReader(lector);
-            String contacto = "";
+            String contact = "";
             boolean flag = true;
             do {
-                contacto = BR.readLine();
-                if (contacto == null) {
+                contact = BR.readLine();
+                if (contact == null) {
                     flag = false;
                 } else {
-                    String[] datos = contacto.split(",");
+                    String[] datos = contact.split(",");
                     contactos.add(datos[0] + ": " + datos[1]);
                 }
             } while (flag);
@@ -206,22 +208,49 @@ public class Radio implements ModoRadio, ModoReproduccion, ModoTelefono {
 
     @Override
     public void conec_desconec() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            if(this.turn_tel){
+                this.turn_tel = false;
+                System.out.println("\nSe ha desconectado el telefono!");
+            } else{
+                this.turn_tel = true;
+                System.out.println("\nSe ha conectado el telefono!");
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
 
     @Override
-    public void mostrarC() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void mostrarC(Vista v) {
+        try{
+            System.out.println("\n**********Agenda**********");
+            v.imprimirArray(contactos);
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
 
     @Override
-    public void llamarC() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void llamarC(Vista v) {
+        try{
+            if(this.llamada == false){
+            System.out.println("\n¿A que contacto desea llamar?");
+            int opcion = v.indexArray(contactos);
+            System.out.println("Se llamara a: "+contactos.get(opcion));
+            this.llamada = true;}
+            else{
+                System.out.println("\nAun esta en llamada, no puede llamar");
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
 
     @Override
     public void finC() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.llamada = false;
+        System.out.println("\n Ha finalizado su llamada!");
     }
 
     @Override
@@ -229,6 +258,12 @@ public class Radio implements ModoRadio, ModoReproduccion, ModoTelefono {
         String to = "";
         String estado = "";
         String estado2 = "";
+        String estado3 = "";
+        if(this.llamada){
+            estado3 = "En llamada";
+        } else{
+            estado3 = "Sin llamdas";
+        }
         if (this.turn_tel) {
             estado2 = "Conectado";
         } else {
@@ -239,7 +274,7 @@ public class Radio implements ModoRadio, ModoReproduccion, ModoTelefono {
         } else {
             estado = "Apagado";
         }
-        to = "***********************************************************\n" + "Radio Comun\n" + "Estado: " + estado + "\nVolumen: " + this.volumen + "\nBanda: " + this.banda + "\nFrecuencia: " + this.frecuencia + "MHz\nTelefono: " + estado2 + "\n***********************************************************";
+        to = "***********************************************************\n" + "Radio Comun\n" + "Estado: " + estado + "\nVolumen: " + this.volumen + "\nBanda: " + this.banda + "\nFrecuencia: " + this.frecuencia + "MHz\nTelefono: " + estado2 + "\nEstado de llamada:"+estado3+"\n***********************************************************";
         return to;
     }
 
