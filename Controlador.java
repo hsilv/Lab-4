@@ -1,4 +1,5 @@
-
+//Controlador (Controller): Este componente es el que responde a la interacción (eventos) que hace el usuario en la interfaz//
+//y realiza las peticiones al modelo para pasar estos a la vista.//
 public class Controlador {
 
     public static void main(String[] args) {
