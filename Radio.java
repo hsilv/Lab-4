@@ -1,4 +1,4 @@
-//Contiene clases para manejar la entrada/salida.//
+
 import java.util.ArrayList;
 import java.io.*;
 
@@ -12,8 +12,9 @@ public class Radio implements ModoRadio, ModoReproduccion, ModoTelefono {
     protected ArrayList<String> emisoras;
     protected boolean turn_tel;
     protected ArrayList<String> contactos;
-    protected ArrayList<String> historial;
+    protected ArrayList<String> playlist;
     protected String cancion;
+    protected int index_play;
 
     public Radio() {
         this.volumen = 10;
@@ -23,21 +24,38 @@ public class Radio implements ModoRadio, ModoReproduccion, ModoTelefono {
         this.turn_tel = false;
         this.incremento_vol = 1;
         this.emisoras = new ArrayList(1);
+        this.contactos = new ArrayList(1);
+        this.playlist = new ArrayList(1);
         this.emisoras.add("La Marca,107.0,MHz,FM");
+        this.index_play = 1;
         try {
             FileReader lector = new FileReader("Lista_contactos.csv");
             BufferedReader BR = new BufferedReader(lector);
             String contacto = "";
             boolean flag = true;
-            do{
+            do {
                 contacto = BR.readLine();
-                if(contacto == null){
+                if (contacto == null) {
                     flag = false;
-                } else{
+                } else {
                     String[] datos = contacto.split(",");
-                    contactos.add(datos[0]+": "+datos[1]);
+                    contactos.add(datos[0] + ": " + datos[1]);
                 }
-            }while(flag);
+            } while (flag);
+            FileReader lector1 = new FileReader("Canciones.csv");
+            BufferedReader BR1 = new BufferedReader(lector1);
+            boolean flag1 = true;
+            String song = "";
+            do {
+                song = BR1.readLine();
+                if (song == null) {
+                    flag = false;
+                } else {
+                    String[] datos = song.split(",");
+                    this.playlist.add("Nombre: " + datos[0] + ", Autor: " + datos[1] + ", Duracion: " + datos[2] + " Genero: " + datos[3]);
+                }
+            } while (flag);
+            this.cancion = this.playlist.get(index_play);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -120,18 +138,70 @@ public class Radio implements ModoRadio, ModoReproduccion, ModoTelefono {
     }
 
     @Override
-    public void seleccionarLista() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void seleccionarLista(Vista v) {
+        try {
+            int opcion = v.menu_play();
+            this.playlist.clear();
+            FileReader lector = null;
+            if (opcion == 1) {
+                lector = new FileReader("Canciones.csv");
+            } else if(opcion == 2){
+                lector = new FileReader("CancionesEspanol.csv");
+            } else if(opcion == 3){
+                lector = new FileReader("Listado_canciones.csv");
+            } else if(opcion == 4){
+                lector = new FileReader("Listado_canciones2.csv");
+            }
+            BufferedReader BR = new BufferedReader(lector);
+            boolean flag = true;
+            String song = "";
+            do {
+                song = BR.readLine();
+                if (song == null) {
+                    flag = false;
+                } else {
+                    String[] datos = song.split(",");
+                    this.playlist.add("Nombre: " + datos[0] + ", Autor: " + datos[1] + ", Duracion: " + datos[2] + " Genero: " + datos[3]);
+                }
+            } while (flag);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     @Override
-    public void cambiarCancion() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void cambiarCancion(Vista v) {
+        try{
+            if(v.menu_cancion()){
+                this.index_play++;
+                if(this.index_play > this.playlist.size()-1){
+                    this.index_play = 0;
+                }
+                System.out.println("Se ha cambiado a: "+playlist.get(index_play));
+                this.cancion = this.playlist.get(index_play);
+            } else{
+                this.index_play = this.index_play-1;
+                if(this.index_play < 0){
+                    this.index_play = this.playlist.size()-1;
+                }
+                System.out.println("Se ha cambiado a: "+playlist.get(index_play));
+                this.cancion = this.playlist.get(index_play);
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
 
     @Override
-    public void escucharCancion() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void escucharCancion(Vista v) {
+        try{
+            System.out.println("\nSe esta escuchando: "+this.cancion);
+            System.out.println("\n¿Que cancion desea escuchar?");
+            this.cancion = this.playlist.get(v.indexArray(this.playlist));
+            System.out.println("\nAhora esta escuchando: "+this.cancion);
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
 
     @Override
