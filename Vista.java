@@ -62,9 +62,9 @@ public class Vista {
         int opcion = 0;
         Scanner scan = new Scanner(System.in);
         try {
-            System.out.println("\n¿Que desea hacer?\n1.Seleccionar lista de reproduccion\n2.Cambiar cancion\n3.Escuchar cancion");
+            System.out.println("\n¿Que desea hacer?\n1.Seleccionar lista de reproduccion\n2.Cambiar cancion\n3.Escuchar cancion\n4.Salir");
             opcion = scan.nextInt();
-            while (opcion <= 0 || opcion >= 4) {
+            while (opcion <= 0 || opcion >= 5) {
                 System.out.println("\n*********Ingrese una opcion valida*********");
                 opcion = scan.nextInt();
             }
@@ -251,5 +251,56 @@ public class Vista {
             System.out.println(e);
         }
         return opcion;
+    }
+    
+    public void imprimirArray(ArrayList<String> array){
+        try{
+            for (String array1 : array) {
+                System.out.println(array1);
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    
+    public int indexArray(ArrayList<String> array){
+        int opcion = 0;
+        Scanner scan = new Scanner(System.in);
+        try{
+            int i = 0;
+            System.out.println("\nElija una opcion: ");
+            for(String array1: array){
+                i++;
+                System.out.println(i+". "+array1);
+            }
+            opcion = scan.nextInt()-1;
+            while(opcion <= 0 || opcion >= array.size()){
+                System.out.println("\n******Ingrese una opcion valida******");
+                opcion = scan.nextInt();
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return opcion;
+    }
+    
+     public boolean menu_cancion(){
+        boolean decision = false;
+        int opcion = 0;
+        Scanner scan = new Scanner(System.in);
+        try{
+            System.out.println("\n¿Que desea hacer?\n1.Retroceder una cancion\n2.Avanzar una cancion");
+            opcion = scan.nextInt();
+            while(opcion <= 0 || opcion >= 3){
+                System.out.println("\n******Ingrese una opcion valida******");
+                opcion = scan.nextInt();
+            }
+            if(opcion == 1){
+                decision = true;
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return decision;
     }
 }
