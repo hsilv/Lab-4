@@ -1,10 +1,11 @@
-Contigo,Joaquin Sabina,3.45
-El Breve Espacio en Que No Estï¿½sï¿½,Pablo Milanï¿½s,4.52
-Parte de la Religiï¿½n,Charly Garcï¿½a,2.23
-Mediterrï¿½neo,Joan manuel Serrat,5.57
-La Chispa Adecuada,Enrique Bunbury,4.41
-Al Lado del Camino,Fito Pï¿½ez,3.01
-Ojalï¿½,Silvio Rodrï¿½guez,4.41
-Enamorado por primera vez.,Enrique Iglesias,5.2
-You,Romeo Santos,6.22
-Amor Prohibido,Selena,6.43
+Titulo,Autor,duracion,genero
+Contigo,Joaquin Sabina,3.45,pop
+El Breve Espacio en Que No Estás ,Pablo Milanés,4.52,rock
+Parte de la Religión,Charly García,2.23,pop
+Mediterráneo,Joan manuel Serrat,5.57,pop
+La Chispa Adecuada,Enrique Bunbury,4.41,pop
+Al Lado del Camino,Fito Páez,3.01,pop
+Ojalá,Silvio Rodríguez,4.41,pop
+Enamorado por primera vez.,Enrique Iglesias,5.2,balada
+You,Romeo Santos,6.22,bachata
+Amor Prohibido,Selena,6.43,tex mex
