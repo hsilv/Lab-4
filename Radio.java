@@ -12,10 +12,12 @@ public class Radio implements ModoRadio, ModoReproduccion, ModoTelefono {
     protected ArrayList<String> emisoras;
     protected boolean turn_tel;
     protected ArrayList<String> contactos;
+    protected String contacto;
     protected boolean llamada;
     protected ArrayList<String> playlist;
     protected String cancion;
     protected int index_play;
+    protected String modo;
 
     public Radio() {
         this.volumen = 10;
@@ -238,7 +240,9 @@ public class Radio implements ModoRadio, ModoReproduccion, ModoTelefono {
             System.out.println("\n¿A que contacto desea llamar?");
             int opcion = v.indexArray(contactos);
             System.out.println("Se llamara a: "+contactos.get(opcion));
-            this.llamada = true;}
+            this.llamada = true;
+            this.contacto = contactos.get(opcion);
+            }
             else{
                 System.out.println("\nAun esta en llamada, no puede llamar");
             }
@@ -281,5 +285,10 @@ public class Radio implements ModoRadio, ModoReproduccion, ModoTelefono {
     public boolean isTurn() {
         return turn;
     }
+
+    public void setModo(String modo) {
+        this.modo = modo;
+    }
+    
 
 }
