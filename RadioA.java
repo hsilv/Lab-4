@@ -1,9 +1,9 @@
+
 import java.io.*;
 import java.util.ArrayList;
 
 public class RadioA extends Radio {
 
-    private String contacto;
     private ArrayList<String> tarjetas;
 
     public RadioA() {
@@ -21,7 +21,7 @@ public class RadioA extends Radio {
                     flag = false;
                 } else {
                     String[] datos = info.split(",");
-                    tarjetas.add("Nombre: " + datos[0] + ", Numero: " + datos[1] + ", " + datos[2] + " en " + datos[3]);
+                    tarjetas.add(datos[0] + ", " + datos[2] + " en " + datos[3] + ", Numero: " + datos[1]);
                 }
             } while (flag);
 
@@ -49,5 +49,11 @@ public class RadioA extends Radio {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+    
+    @Override
+    public String toString(){
+        String cadena = "";
+        return cadena;
     }
 }
