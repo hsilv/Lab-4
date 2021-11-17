@@ -1,4 +1,4 @@
-
+//Contiene clases para manejar la entrada/salida.//
 import java.util.ArrayList;
 import java.io.*;
 
